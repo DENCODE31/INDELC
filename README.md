@@ -4,8 +4,8 @@
 ![Made in Colombia](https://img.shields.io/badge/Made%20in-Colombia-yellow.svg)
 
 No sé si esto es otra idea loca o quizas un pasatiempo <br>
-de mi insomnio, o simplemente es un excusa elegante
-para seguir creando, solo para contarte todó aunque
-no me estes entendiendo. Sin duda, lo unico cuerdo
+de mi insomnio, o simplemente es un excusa elegante<br>
+para seguir creando, solo para contarte todó aunque<br>
+no me estes entendiendo. Sin duda, lo unico cuerdo<br>
 que tengo eres tú, Dani. 🌻
  
