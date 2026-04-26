@@ -110,20 +110,16 @@ static lv_disp_drv_t disp_drv;
 /* Display flushing */
 void my_disp_flush(lv_disp_drv_t *disp, const lv_area_t *area, lv_color_t *color_p)
 {
-
   uint32_t w = (area->x2 - area->x1 + 1);
   uint32_t h = (area->y2 - area->y1 + 1);
+
+  lcd.pushImageDMA(area->x1, area->y1, w, h, (lgfx::rgb565_t*)&color_p->full);
   
-
-  //lcd.fillScreen(TFT_WHITE);
-#if (LV_COLOR_16_SWAP != 0)
- lcd.pushImageDMA(area->x1, area->y1, w, h,(lgfx::rgb565_t*)&color_p->full);
-#else
-  lcd.pushImageDMA(area->x1, area->y1, w, h,(lgfx::rgb565_t*)&color_p->full);//
-#endif
-
+  // ESPERAR a que termine el envío antes de liberar el buffer
+  // Esto evita el parpadeo (flickering)
+  lcd.waitDMA(); 
+  
   lv_disp_flush_ready(disp);
-
 }
 
 void my_touchpad_read(lv_indev_drv_t *indev_driver, lv_indev_data_t *data)

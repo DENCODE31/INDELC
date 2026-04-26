@@ -13,10 +13,10 @@ void ui_Screen1_screen_init(void)
     // Fondo blanco
     lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(000000), 0);
 
-    // Logo centrado
-    lv_obj_t * logo = lv_img_create(ui_Screen1);
-    lv_img_set_src(logo, & ui_img_logo);
-    lv_obj_set_pos(logo, 50, 30);
+    // Fondo de pantalla (la nueva imagen de 700x397)
+    lv_obj_t * background = lv_img_create(ui_Screen1);
+    lv_img_set_src(background, &ui_img_background_png);
+    lv_obj_align(background, LV_ALIGN_CENTER, 0, 0); // Centrar en pantalla
 
     ui_Button1 = lv_btn_create(ui_Screen1);
     lv_obj_set_width(ui_Button1, 80);

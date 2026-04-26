@@ -16,6 +16,10 @@ extern "C" {
 #include "ui_comp.h"
 #include "ui_comp_hook.h"
 #include "ui_events.h"
+// SCREEN: ui_SplashScreen
+void ui_SplashScreen_init(void);
+extern lv_obj_t * ui_SplashScreen;
+
 // SCREEN: ui_Screen1
 void ui_Screen1_screen_init(void);
 extern lv_obj_t * ui_Screen1;
@@ -27,6 +31,7 @@ extern lv_obj_t * ui_Label1;
 extern lv_obj_t * ui_Label2;
 extern lv_obj_t * ui____initial_actions0;
 extern const lv_img_dsc_t ui_img_logo;
+extern const lv_img_dsc_t ui_img_splash;
 extern int led;
 LV_IMG_DECLARE(ui_img_background_png);    // assets\background.png
 LV_IMG_DECLARE(ui_img_on_png);    // assets\on.png
