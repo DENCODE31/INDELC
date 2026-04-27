@@ -4,74 +4,180 @@
 // Project name: esp32-5.0
 
 #include "ui.h"
+lv_obj_t *label_estado;
 
-void ui_Screen1_screen_init(void)
+void btn_event_cb(lv_event_t * e)
 {
-    ui_Screen1 = lv_obj_create(NULL);
-    lv_obj_clear_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE);
+    lv_event_code_t code = lv_event_get_code(e);
 
-    // Fondo negro
-    lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Screen1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+    if(code == LV_EVENT_PRESSED)
+        lv_label_set_text(label_estado, "BTN PRESIONADO");
+    else if(code == LV_EVENT_RELEASED)
+        lv_label_set_text(label_estado, "ESPERANDO");
+}
 
-    // Fondo de pantalla (la nueva imagen de 700x397)
-    lv_obj_t * background = lv_img_create(ui_Screen1);
-    lv_img_set_src(background, &ui_img_background_png);
-    lv_obj_align(background, LV_ALIGN_CENTER, 0, 0); // Centrar en pantalla
+void btnM_event_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
 
-    ui_Button1 = lv_btn_create(ui_Screen1);
-    lv_obj_set_width(ui_Button1, 80);
-    lv_obj_set_height(ui_Button1, 80);
-    lv_obj_set_x(ui_Button1, 216);
-    lv_obj_set_y(ui_Button1, -101);
-    lv_obj_set_align(ui_Button1, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_HIDDEN);              /// Ocultar botón temporalmente
-    lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_Button1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Button1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_src(ui_Button1, &ui_img_on_png, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0xE61717), LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_bg_opa(ui_Button1, 255, LV_PART_MAIN | LV_STATE_PRESSED);
+    if(code == LV_EVENT_PRESSED)
+        lv_label_set_text(label_estado, "BTN M PRESIONADO");
+    else if(code == LV_EVENT_RELEASED)
+        lv_label_set_text(label_estado, "ESPERANDO");
+}
 
-    ui_Button2 = lv_btn_create(ui_Screen1);
-    lv_obj_set_width(ui_Button2, 80);
-    lv_obj_set_height(ui_Button2, 80);
-    lv_obj_set_x(ui_Button2, 220);
-    lv_obj_set_y(ui_Button2, 49);
-    lv_obj_set_align(ui_Button2, LV_ALIGN_CENTER);
-    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_HIDDEN);              /// Ocultar botón temporalmente
-    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
-    lv_obj_clear_flag(ui_Button2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_obj_set_style_bg_color(ui_Button2, lv_color_hex(0xFBF9F9), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_opa(ui_Button2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_img_src(ui_Button2, &ui_img_off_png, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(ui_Button2, lv_color_hex(0xB9B3B3), LV_PART_MAIN | LV_STATE_PRESSED);
-    lv_obj_set_style_bg_opa(ui_Button2, 255, LV_PART_MAIN | LV_STATE_PRESSED);
+void btnT_event_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
 
-    ui_Label1 = lv_label_create(ui_Screen1);
-    lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label1, -40);
-    lv_obj_set_y(ui_Label1, -101);
-    lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label1, "");
-    lv_obj_set_style_text_color(ui_Label1, lv_color_hex(0xFDF9F9), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Label1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label1, &lv_font_montserrat_42, LV_PART_MAIN | LV_STATE_DEFAULT);
+    if(code == LV_EVENT_PRESSED)
+        lv_label_set_text(label_estado, "BTN T PRESIONADO");
+    else if(code == LV_EVENT_RELEASED)
+        lv_label_set_text(label_estado, "ESPERANDO");
+}
 
-    ui_Label2 = lv_label_create(ui_Screen1);
-    lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);   /// 1
-    lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT);    /// 1
-    lv_obj_set_x(ui_Label2, -40);
-    lv_obj_set_y(ui_Label2, 50);
-    lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
-    lv_label_set_text(ui_Label2, "");
-    lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0xFDFBFB), LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_opa(ui_Label2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label2, &lv_font_montserrat_42, LV_PART_MAIN | LV_STATE_DEFAULT);
+void btnV_event_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
 
-    lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_ALL, NULL);
+    if(code == LV_EVENT_PRESSED)
+        lv_label_set_text(label_estado, "BTN V PRESIONADO");
+    else if(code == LV_EVENT_RELEASED)
+        lv_label_set_text(label_estado, "ESPERANDO");
+}
 
+
+void ui_Screen1_screen_init(void) {
+  ui_Screen1 = lv_obj_create(NULL);
+  lv_obj_clear_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE);
+  
+  
+  // Fondo negro
+  lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(0x000000),
+                            LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Screen1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+  // Fondo de pantalla (la nueva imagen de 700x397)
+  lv_obj_t *background = lv_img_create(ui_Screen1);
+  lv_img_set_src(background, &ui_img_background_png);
+  lv_obj_align(background, LV_ALIGN_CENTER, 0, 0); // Centrar en pantalla
+
+  ui_Button1 = lv_btn_create(ui_Screen1);
+  lv_obj_set_width(ui_Button1, 80);
+  lv_obj_set_height(ui_Button1, 80);
+  lv_obj_set_x(ui_Button1, 216);
+  lv_obj_set_y(ui_Button1, -101);
+  lv_obj_set_align(ui_Button1, LV_ALIGN_CENTER);
+  lv_obj_add_flag(ui_Button1,
+                  LV_OBJ_FLAG_HIDDEN); /// Ocultar botón temporalmente
+  lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
+  lv_obj_clear_flag(ui_Button1, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
+  lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0xFFFFFF),
+                            LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Button1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_img_src(ui_Button1, &ui_img_on_png,
+                              LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0xE61717),
+                            LV_PART_MAIN | LV_STATE_PRESSED);
+  lv_obj_set_style_bg_opa(ui_Button1, 255, LV_PART_MAIN | LV_STATE_PRESSED);
+
+  ui_Button2 = lv_btn_create(ui_Screen1);
+  lv_obj_set_width(ui_Button2, 80);
+  lv_obj_set_height(ui_Button2, 80);
+  lv_obj_set_x(ui_Button2, 220);
+  lv_obj_set_y(ui_Button2, 49);
+  lv_obj_set_align(ui_Button2, LV_ALIGN_CENTER);
+  lv_obj_add_flag(ui_Button2,
+                  LV_OBJ_FLAG_HIDDEN); /// Ocultar botón temporalmente
+  lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS); /// Flags
+  lv_obj_clear_flag(ui_Button2, LV_OBJ_FLAG_SCROLLABLE);    /// Flags
+  lv_obj_set_style_bg_color(ui_Button2, lv_color_hex(0xFBF9F9),
+                            LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(ui_Button2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_img_src(ui_Button2, &ui_img_off_png,
+                              LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_color(ui_Button2, lv_color_hex(0xB9B3B3),
+                            LV_PART_MAIN | LV_STATE_PRESSED);
+  lv_obj_set_style_bg_opa(ui_Button2, 255, LV_PART_MAIN | LV_STATE_PRESSED);
+
+  ui_Label1 = lv_label_create(ui_Screen1);
+  lv_obj_set_width(ui_Label1, LV_SIZE_CONTENT);  /// 1
+  lv_obj_set_height(ui_Label1, LV_SIZE_CONTENT); /// 1
+  lv_obj_set_x(ui_Label1, -40);
+  lv_obj_set_y(ui_Label1, -101);
+  lv_obj_set_align(ui_Label1, LV_ALIGN_CENTER);
+  lv_label_set_text(ui_Label1, "");
+  lv_obj_set_style_text_color(ui_Label1, lv_color_hex(0xFDF9F9),
+                              LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_text_opa(ui_Label1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_text_font(ui_Label1, &lv_font_montserrat_42,
+                             LV_PART_MAIN | LV_STATE_DEFAULT);
+
+  ui_Label2 = lv_label_create(ui_Screen1);
+  lv_obj_set_width(ui_Label2, LV_SIZE_CONTENT);  /// 1
+  lv_obj_set_height(ui_Label2, LV_SIZE_CONTENT); /// 1
+  lv_obj_set_x(ui_Label2, -40);
+  lv_obj_set_y(ui_Label2, 50);
+  lv_obj_set_align(ui_Label2, LV_ALIGN_CENTER);
+  lv_label_set_text(ui_Label2, "");
+  lv_obj_set_style_text_color(ui_Label2, lv_color_hex(0xFDFBFB),
+                              LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_text_opa(ui_Label2, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+  lv_obj_set_style_text_font(ui_Label2, &lv_font_montserrat_42,
+                             LV_PART_MAIN | LV_STATE_DEFAULT);
+
+
+  lv_obj_add_event_cb(ui_Button1, ui_event_Button1, LV_EVENT_ALL, NULL);
+  lv_obj_add_event_cb(ui_Button2, ui_event_Button2, LV_EVENT_ALL, NULL);
+  // ================= BOTON botella =================
+  lv_obj_t *btn = lv_btn_create(ui_Screen1);
+  lv_obj_set_size(btn, 210, 160);
+  lv_obj_set_pos(btn, 40, 100);
+  // fondo transparente
+  lv_obj_set_style_bg_opa(btn, LV_OPA_TRANSP, 0);
+  // sin borde
+  lv_obj_set_style_border_opa(btn, LV_OPA_TRANSP, 0);
+  // evento
+  lv_obj_add_event_cb(btn, btn_event_cb, LV_EVENT_ALL, NULL);
+  // ================= BOTON Media =================
+lv_obj_t *btnM = lv_btn_create(ui_Screen1);
+lv_obj_set_size(btnM, 210, 160);
+lv_obj_set_pos(btnM, 270, 100);
+// transparente
+lv_obj_set_style_bg_opa(btnM, LV_OPA_TRANSP, 0);
+lv_obj_set_style_border_opa(btnM, LV_OPA_TRANSP, 0);
+// evento
+lv_obj_add_event_cb(btnM, btnM_event_cb, LV_EVENT_ALL, NULL);
+
+
+// ================= BOTON Timbo =================
+lv_obj_t *btnT = lv_btn_create(ui_Screen1);
+lv_obj_set_size(btnT, 210, 160);
+lv_obj_set_pos(btnT, 40, 280);
+// transparente
+lv_obj_set_style_bg_opa(btnT, LV_OPA_TRANSP, 0);
+lv_obj_set_style_border_opa(btnT, LV_OPA_TRANSP, 0);
+// evento
+lv_obj_add_event_cb(btnT, btnT_event_cb, LV_EVENT_ALL, NULL);
+
+
+// ================= BOTON Vaso =================
+lv_obj_t *btnV = lv_btn_create(ui_Screen1);
+lv_obj_set_size(btnV, 210, 160);
+lv_obj_set_pos(btnV, 270, 280);
+// transparente
+lv_obj_set_style_bg_opa(btnV, LV_OPA_TRANSP, 0);
+lv_obj_set_style_border_opa(btnV, LV_OPA_TRANSP, 0);
+// evento
+lv_obj_add_event_cb(btnV, btnV_event_cb, LV_EVENT_ALL, NULL);
+
+
+// ================= TEXTO =================
+label_estado = lv_label_create(ui_Screen1);
+lv_label_set_text(label_estado, "Esperando...");
+lv_obj_set_pos(label_estado, 600, 170);
+
+// estilo del texto
+lv_obj_set_style_text_color(label_estado, lv_color_hex(0xFFFFFF), 0);
+lv_obj_set_style_text_font(label_estado, &lv_font_montserrat_28, 0);
 }
