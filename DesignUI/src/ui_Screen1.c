@@ -10,8 +10,9 @@ void ui_Screen1_screen_init(void)
     ui_Screen1 = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_Screen1, LV_OBJ_FLAG_SCROLLABLE);
 
-    // Fondo blanco
-    lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(000000), 0);
+    // Fondo negro
+    lv_obj_set_style_bg_color(ui_Screen1, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_opa(ui_Screen1, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     // Fondo de pantalla (la nueva imagen de 700x397)
     lv_obj_t * background = lv_img_create(ui_Screen1);
@@ -24,6 +25,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_x(ui_Button1, 216);
     lv_obj_set_y(ui_Button1, -101);
     lv_obj_set_align(ui_Button1, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_HIDDEN);              /// Ocultar botón temporalmente
     lv_obj_add_flag(ui_Button1, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_Button1, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_Button1, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -38,6 +40,7 @@ void ui_Screen1_screen_init(void)
     lv_obj_set_x(ui_Button2, 220);
     lv_obj_set_y(ui_Button2, 49);
     lv_obj_set_align(ui_Button2, LV_ALIGN_CENTER);
+    lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_HIDDEN);              /// Ocultar botón temporalmente
     lv_obj_add_flag(ui_Button2, LV_OBJ_FLAG_SCROLL_ON_FOCUS);     /// Flags
     lv_obj_clear_flag(ui_Button2, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
     lv_obj_set_style_bg_color(ui_Button2, lv_color_hex(0xFBF9F9), LV_PART_MAIN | LV_STATE_DEFAULT);

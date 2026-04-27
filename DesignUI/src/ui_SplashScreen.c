@@ -18,7 +18,7 @@ static void splash_timer_cb(lv_timer_t *timer) {
 
   // Transición suave: la nueva pantalla aparece (Fade ON) sobre la splash
   // El último parámetro 'true' indica que la splash se borrará automáticamente al terminar
-  lv_scr_load_anim(ui_Screen1, LV_SCR_LOAD_ANIM_FADE_ON, 600, 0, true);
+  lv_scr_load_anim(ui_Screen1, LV_SCR_LOAD_ANIM_NONE, 0, 0, true);
 }
 
 // ─── Inicialización de la splash screen ──────────────────────────────────────
